@@ -42,3 +42,12 @@ func _physics_process(delta: float) -> void:
 func _on_sides_check_body_entered(body: Node) -> void:
 	if body.has_method("ouch"):
 		body.ouch(position.x)
+
+func die():
+	$Particles2D.emitting = true
+	$AnimatedSprite.visible = false
+	self.set_physics_process(false)
+	$sides_check.queue_free()
+	$CollisionShape2D.queue_free()
+	yield(get_tree().create_timer(0.8),"timeout")
+	self.queue_free()

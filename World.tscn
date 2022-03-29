@@ -524,14 +524,17 @@ wait_time = 0.32
 [node name="invincibility" type="Timer" parent="Player"]
 wait_time = 3.0
 
-[node name="Gun" parent="Player" instance=ExtResource( 6 )]
-position = Vector2( 72, 264 )
+[node name="shot_pause" type="Timer" parent="Player"]
+wait_time = 0.155
 
 [node name="muzzle" type="Position2D" parent="Player"]
-position = Vector2( 79, 261 )
+position = Vector2( 76, 262 )
+
+[node name="Gun" parent="Player" instance=ExtResource( 6 )]
+position = Vector2( 69, 264 )
 
 [node name="audio" type="AudioStreamPlayer2D" parent="Player"]
-volume_db = -11.965
+volume_db = -10.0
 
 [node name="MobileControls" parent="." instance=ExtResource( 5 )]
 
@@ -591,4 +594,5 @@ z_index = 1
 
 [connection signal="timeout" from="Player/return_to_normal_color" to="Player" method="_on_return_to_normal_color_timeout"]
 [connection signal="timeout" from="Player/invincibility" to="Player" method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Player/shot_pause" to="Player" method="_on_shot_pause_timeout"]
 [connection signal="body_entered" from="Void" to="." method="_on_Void_body_entered"]

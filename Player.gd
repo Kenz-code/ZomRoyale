@@ -11,6 +11,7 @@ const JUMPMULTIPLER = 12
 var lives = 0
 var direction = 1
 var invincible = false
+var can_shoot = true
 
 export (PackedScene) var Bullet
 
@@ -24,17 +25,17 @@ func _physics_process(delta: float) -> void:
 		motion += Vector2.UP * (-9.81) * (JUMPMULTIPLER)
 	
 	
-	$Gun.position.x = $Sprite.position.x + (16 *direction)
-	$muzzle.position.x = $Sprite.position.x + (25 * direction)
+	$Gun.position.x = $Sprite.position.x + (13 *direction)
+	$muzzle.position.x = $Sprite.position.x + (22*direction)
 	if direction == 1:
 		$Sprite.scale.x = 2
 		$Gun.flip_h = false
 	if direction == -1:
 		$Sprite.scale.x = -2
 		$Gun.flip_h = true
-
+	
 	motion.x = clamp(motion.x,-MAXSPEED,MAXSPEED)
-
+	
 	if Input.is_action_pressed("right"):
 		motion.x += ACCEL
 		direction = 1
@@ -96,7 +97,18 @@ func _on_invincibility_timeout() -> void:
 	set_collision_mask_bit(1,true)
 
 func shoot():
-	var b = Bullet.instance()
-	b.speed = b.speed * direction
-	b.transform = $muzzle.transform
-	add_child(b)
+	if can_shoot == true:
+		can_shoot = false
+		print(can_shoot)
+		$shot_pause.start()
+		var b = Bullet.instance()
+		b.speed = b.speed * direction
+		b.global_position = $muzzle.global_position
+		var shoot = load("res://Sounds/Shoot.wav")
+		$audio.set_stream(shoot)
+		$audio.play()
+		add_child(b)
+
+
+func _on_shot_pause_timeout() -> void:
+	can_shoot = true
