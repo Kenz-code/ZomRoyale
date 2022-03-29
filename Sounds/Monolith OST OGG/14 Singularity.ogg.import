@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/14 Singularity.ogg-5a2048fbea576a732e1f95b9e57c9306.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/14 Singularity.ogg"
+dest_files=[ "res://.import/14 Singularity.ogg-5a2048fbea576a732e1f95b9e57c9306.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

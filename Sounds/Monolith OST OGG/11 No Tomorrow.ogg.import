@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/11 No Tomorrow.ogg-fec8dfed56408158f41c0ecdcef2126c.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/11 No Tomorrow.ogg"
+dest_files=[ "res://.import/11 No Tomorrow.ogg-fec8dfed56408158f41c0ecdcef2126c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

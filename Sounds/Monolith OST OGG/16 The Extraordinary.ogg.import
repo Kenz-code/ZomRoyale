@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/16 The Extraordinary.ogg-f1fbca9f2e71855263ce26d9a8f703fc.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/16 The Extraordinary.ogg"
+dest_files=[ "res://.import/16 The Extraordinary.ogg-f1fbca9f2e71855263ce26d9a8f703fc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

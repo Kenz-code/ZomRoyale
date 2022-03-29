@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/28 Towering Blues.ogg-938a4d0c80a7689461b845bc98538ca1.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/28 Towering Blues.ogg"
+dest_files=[ "res://.import/28 Towering Blues.ogg-938a4d0c80a7689461b845bc98538ca1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

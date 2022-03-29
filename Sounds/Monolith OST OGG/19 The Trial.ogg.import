@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/19 The Trial.ogg-b514fe6f6b7d6918a1b2041526a29b18.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/19 The Trial.ogg"
+dest_files=[ "res://.import/19 The Trial.ogg-b514fe6f6b7d6918a1b2041526a29b18.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

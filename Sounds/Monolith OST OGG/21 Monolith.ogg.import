@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/21 Monolith.ogg-c0ceafe154c1522da75665024c8c3150.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/21 Monolith.ogg"
+dest_files=[ "res://.import/21 Monolith.ogg-c0ceafe154c1522da75665024c8c3150.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

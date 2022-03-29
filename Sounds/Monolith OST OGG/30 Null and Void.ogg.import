@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/30 Null and Void.ogg-2b31fd3fd7af1b40a81989a5345788ef.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/30 Null and Void.ogg"
+dest_files=[ "res://.import/30 Null and Void.ogg-2b31fd3fd7af1b40a81989a5345788ef.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

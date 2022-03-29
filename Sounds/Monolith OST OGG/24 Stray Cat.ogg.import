@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/24 Stray Cat.ogg-8afe9dbb2781e82ba7797e56d6f898a5.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/24 Stray Cat.ogg"
+dest_files=[ "res://.import/24 Stray Cat.ogg-8afe9dbb2781e82ba7797e56d6f898a5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

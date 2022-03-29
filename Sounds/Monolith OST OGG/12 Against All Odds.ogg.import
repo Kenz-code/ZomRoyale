@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/12 Against All Odds.ogg-0000410c42fb6fdf611dca302028e228.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/12 Against All Odds.ogg"
+dest_files=[ "res://.import/12 Against All Odds.ogg-0000410c42fb6fdf611dca302028e228.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

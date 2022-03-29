@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/35 End of Monolith (Unused).ogg-47c1e19732435c2f7757e94091ab5953.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/35 End of Monolith (Unused).ogg"
+dest_files=[ "res://.import/35 End of Monolith (Unused).ogg-47c1e19732435c2f7757e94091ab5953.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

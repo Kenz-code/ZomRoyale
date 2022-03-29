@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/06 Tonal Dissonance.ogg-2bec9709888cf3219b6f8a4eb8a770b4.oggstr"
+
+[deps]
+
+source_file="res://Sounds/06 Tonal Dissonance.ogg"
+dest_files=[ "res://.import/06 Tonal Dissonance.ogg-2bec9709888cf3219b6f8a4eb8a770b4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

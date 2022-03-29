@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/32 Bounty Hunter.ogg-3eb524d040b98fb92b5130e4d478d4d2.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Monolith OST OGG/32 Bounty Hunter.ogg"
+dest_files=[ "res://.import/32 Bounty Hunter.ogg-3eb524d040b98fb92b5130e4d478d4d2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
