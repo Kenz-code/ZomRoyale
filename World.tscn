@@ -493,7 +493,7 @@ collision_mask = 33
 format = 1
 tile_data = PoolIntArray( 65535, 14, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 14, 0, 131071, 14, 0, 65556, 14, 0, 196607, 14, 0, 131092, 14, 0, 262143, 14, 0, 196628, 14, 0, 327679, 14, 0, 262145, 2, 0, 262158, 0, 0, 262164, 14, 0, 393215, 14, 0, 327688, 4, 0, 327700, 14, 0, 458751, 14, 0, 393236, 14, 0, 524287, 14, 0, 458755, 0, 0, 458764, 2, 0, 458772, 14, 0, 589823, 14, 0, 524308, 14, 0, 655359, 13, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655363, 12, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655376, 12, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="." groups=["player"]]
 position = Vector2( -40, -3 )
 z_index = 1
 collision_mask = 14
@@ -545,7 +545,7 @@ position = Vector2( 105, 85 )
 scale = Vector2( 1.2, 1.2 )
 z_index = -1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Portal2" type="AnimatedSprite" parent="Enemys"]
@@ -553,7 +553,7 @@ position = Vector2( 320, 240 )
 scale = Vector2( 1.2, 1.2 )
 z_index = -1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Portal3" type="AnimatedSprite" parent="Enemys"]
@@ -561,7 +561,7 @@ position = Vector2( 535, 85 )
 scale = Vector2( 1.2, 1.2 )
 z_index = -1
 frames = SubResource( 19 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -570,6 +570,7 @@ stream = ExtResource( 8 )
 [node name="Void" type="Area2D" parent="."]
 position = Vector2( 83, 391 )
 collision_layer = 0
+collision_mask = 19
 __meta__ = {
 "_edit_group_": true
 }

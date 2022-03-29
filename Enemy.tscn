@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Art/zom.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Art/blood.png" type="Texture" id=3]
+[ext_resource path="res://Health_Bar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -66,7 +67,6 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
 animation = "run"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -92,5 +92,15 @@ one_shot = true
 explosiveness = 0.83
 process_material = SubResource( 10 )
 texture = ExtResource( 3 )
+
+[node name="Health_Bar" parent="." instance=ExtResource( 4 )]
+margin_left = -16.0
+margin_top = -15.0
+margin_right = -16.0
+margin_bottom = -15.0
+caution_zone = 0.7
+danger_zone = 0.4
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_entered" from="sides_check" to="." method="_on_sides_check_body_entered"]

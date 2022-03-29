@@ -33,5 +33,5 @@ position = Vector2( 496, 272 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 normal = ExtResource( 2 )
-action = "jump"
+action = "shoot"
 visibility_mode = 1

@@ -9,7 +9,7 @@ const ACCEL = 40
 const FALLMULTIPLIER = 2
 const JUMPMULTIPLER = 12
 var lives = 0
-var direction = 1
+export (int) var direction = 1
 var invincible = false
 var can_shoot = true
 
@@ -83,6 +83,9 @@ func ouch(var enemyposx):
 		
 		Input.action_release("left")
 		Input.action_release("right")
+		
+		if(lives == 3):
+			get_tree().reload_current_scene()
 
 
 func _on_return_to_normal_color_timeout() -> void:
@@ -99,7 +102,6 @@ func _on_invincibility_timeout() -> void:
 func shoot():
 	if can_shoot == true:
 		can_shoot = false
-		print(can_shoot)
 		$shot_pause.start()
 		var b = Bullet.instance()
 		b.speed = b.speed * direction
