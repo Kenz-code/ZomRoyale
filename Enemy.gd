@@ -11,7 +11,7 @@ export var MAXSPEED = 75
 export var direction = 1
 export var detects_cliffs = false
 export var jump_cliffs = false
-export var health = 3
+export (float) var health = 100
 
 var motion = Vector2()
 
@@ -48,10 +48,10 @@ func _on_sides_check_body_entered(body: Node) -> void:
 	if body.has_method("ouch"):
 		body.ouch(position.x)
 
-func die():
+func die(damage: int):
 	$Health_Bar.visible = true
-	health -= 1
-	if health == 0:
+	health -= damage
+	if health <= 0:
 		$Health_Bar.visible = false
 		$Particles2D.emitting = true
 		$AnimatedSprite.visible = false

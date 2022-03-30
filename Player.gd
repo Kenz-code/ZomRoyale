@@ -14,10 +14,18 @@ var invincible = false
 var can_shoot = true
 
 export (PackedScene) var Bullet
+onready var current_gun = Global.current_gun
 
 var motion = Vector2()
 
+func _ready() -> void:
+	$Gun.frame = current_gun[0]
+	$shot_pause.wait_time = current_gun[1]
+
 func _physics_process(delta: float) -> void:
+	current_gun = Global.current_gun
+	$shot_pause.wait_time = current_gun[1]
+	$Gun.frame = current_gun[0]
 	motion.y += GRAVITY
 	if motion.y > 0:
 		motion += Vector2.UP * (-9.81) * (FALLMULTIPLIER)
@@ -26,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	$Gun.position.x = $Sprite.position.x + (13 *direction)
-	$muzzle.position.x = $Sprite.position.x + (22*direction)
+	$muzzle.position.x = $Sprite.position.x + (current_gun[3]*direction)
 	if direction == 1:
 		$Sprite.scale.x = 2
 		$Gun.flip_h = false
@@ -47,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		motion.x = lerp(motion.x,0,0.2)
 		$AnimationPlayer.play("idle")
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		shoot()
 	
 	if is_on_floor():
@@ -106,6 +114,9 @@ func shoot():
 		var b = Bullet.instance()
 		b.speed = b.speed * direction
 		b.global_position = $muzzle.global_position
+		b.decay = current_gun[2]
+		b.direction = direction
+		b.damage = current_gun[4]
 		var shoot = load("res://Sounds/Shoot.wav")
 		$audio.set_stream(shoot)
 		$audio.play()

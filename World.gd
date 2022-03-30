@@ -19,7 +19,7 @@ onready var current_state = game_state.playing_wave
 
 func _ready() -> void:
 	$AudioStreamPlayer2D.play()
-	
+	$Pick_gun.scale.x = 0
 	set_up_wave()
 
 
@@ -49,7 +49,6 @@ func set_up_wave():
 		enemy.MAXSPEED = rand_range(55,75)
 		enemy.add_to_group("zoms")
 		
-		print(n)
 		add_child(enemy)
 		
 	#wave text
@@ -73,7 +72,6 @@ func change_state(new_state):
 			set_up_wave()
 			
 		current_state = new_state
-		print(current_state)
 
 func handle_state_processes(this_state):
 	if(this_state == game_state.playing_wave):
@@ -113,3 +111,20 @@ func blink_text(wave_start_text):
 	wave_start_text.show()
 	yield(get_tree().create_timer(0.8),"timeout")
 	wave_start_text.queue_free()
+
+
+func _on_back_button_up() -> void:
+	$Pick_gun/pauseaudio.stop()
+	get_tree().paused = false
+	$Pick_gun.scale.x = 0
+
+
+func _on_pause_button_up() -> void:
+	$Pick_gun/pauseaudio.play()
+	get_tree().paused = true
+	$Pick_gun.scale.x = 1
+
+
+func _on_main_menu_button_up() -> void:
+	get_tree().paused = false
+	get_tree().change_scene("res://Menu.tscn")
