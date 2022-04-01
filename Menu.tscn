@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.5, 1 ),
 "transitions": PoolRealArray( 153893, 1e+06 ),
 "update": 0,
-"values": [ Vector2( 496, 0 ), Vector2( 496, 8 ) ]
+"values": [ Vector2( 424, 0 ), Vector2( 424, 8 ) ]
 }
 
 [node name="Menu" type="Node2D"]
@@ -64,9 +64,10 @@ frame = 1
 playing = true
 
 [node name="Name" parent="." instance=ExtResource( 3 )]
-margin_left = 496.0
-margin_right = 568.0
-text = "Name"
+margin_left = 424.0
+margin_right = 640.0
+rect_min_size = Vector2( 216, 33 )
+text = ""
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -101,7 +102,7 @@ margin_left = 454.0
 margin_top = 169.0
 margin_right = 599.0
 margin_bottom = 232.0
-focus_neighbour_left = NodePath("../ShowLB")
+focus_neighbour_left = NodePath("../DelSave")
 focus_neighbour_bottom = NodePath("../Button")
 theme = ExtResource( 2 )
 text = "Marathon"
@@ -109,14 +110,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShowLB" type="Button" parent="Control"]
+[node name="DelSave" type="Button" parent="Control"]
 margin_left = 41.0
 margin_top = 169.0
 margin_right = 261.0
 margin_bottom = 232.0
 focus_neighbour_right = NodePath("../Marathon")
 focus_neighbour_bottom = NodePath("../Guns")
-text = "Leader Board"
+text = "Delete save"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -126,7 +127,7 @@ margin_left = 41.0
 margin_top = 250.0
 margin_right = 186.0
 margin_bottom = 313.0
-focus_neighbour_top = NodePath("../ShowLB")
+focus_neighbour_top = NodePath("../DelSave")
 focus_neighbour_right = NodePath("../Button")
 text = "Seven Seven"
 icon = ExtResource( 6 )
@@ -250,7 +251,7 @@ autoplay = "name bob"
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Control/Marathon" to="." method="_on_Button2_pressed"]
-[connection signal="pressed" from="Control/ShowLB" to="." method="_on_ShowLB_pressed"]
+[connection signal="pressed" from="Control/DelSave" to="." method="_on_DelSave_pressed"]
 [connection signal="pressed" from="Control/Guns" to="." method="_on_Guns_pressed"]
 [connection signal="pressed" from="Control/ColorRect/TextureRect/ScrollContainer/VBoxContainer/Back" to="." method="_on_Back_pressed"]
 [connection signal="text_entered" from="Control/name_enter/TextureRect/LineEdit" to="." method="_on_LineEdit_text_entered"]

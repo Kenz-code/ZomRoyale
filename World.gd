@@ -1,7 +1,9 @@
 extends Node2D
 
-export var wave = 1
+onready var wave = Global.wave
 var wave_enemies_times_this_num = 2
+var enemy_health_mult: float = 1
+var negative_zoms: int = 0
 
 var node = load("res://Enemy.tscn")
 var text = load("res://Text.tscn")
@@ -25,15 +27,18 @@ func _ready() -> void:
 
 
 func set_up_wave():
+	wave = 10
 	for n in $Enemys.get_children():
 		if n.is_in_group("zoms"):
 			n.queue_free()
 	if not Global.marathon:
 		wave = Global.save["wave_reached"]
 		$Player.reset_hearts()
+	#add resistance
+	add_resistance()
 	$Player.global_position = Vector2(-40,-3)
 	$Player.direction = 1
-	for n in range(wave * wave_enemies_times_this_num):
+	for n in range(wave * wave_enemies_times_this_num - negative_zoms):
 		randomize()
 		var enemy = node.instance()
 		enemy.position = portal_locations[randi() % portal_locations.size()]
@@ -56,6 +61,7 @@ func set_up_wave():
 		enemy.MAXSPEED = rand_range(55,75)
 		enemy.add_to_group("zoms")
 		enemy.get_child(0).material.resource_local_to_scene = true
+		enemy.health_mult = enemy_health_mult
 		
 		$Enemys.add_child(enemy)
 		
@@ -150,3 +156,17 @@ func _input(event: InputEvent) -> void:
 
 func reset_wave_count():
 	wave = 1
+
+func add_resistance():
+	if wave in range(10,19):
+		negative_zoms = 18
+		enemy_health_mult = 2
+	elif wave in range(20,29):
+		negative_zoms = 38
+		enemy_health_mult = 3.5
+	elif wave in range(30,39):
+		negative_zoms = 58
+		enemy_health_mult = 5
+	else:
+		negative_zoms = 0
+		enemy_health_mult = 1

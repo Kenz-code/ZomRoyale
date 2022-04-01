@@ -12,11 +12,13 @@ export var direction = 1
 export var detects_cliffs = false
 export var jump_cliffs = false
 export (float) var health = 100
+export (float) var health_mult = 1
 
 var motion = Vector2()
 
 
 func _ready() -> void:
+	health *= health_mult
 	$floor_checker.position.x = $CollisionShape2D.shape.get_radius() * direction + 1
 	if jump_cliffs or detects_cliffs:
 		$floor_checker.enabled = true
@@ -49,7 +51,7 @@ func _on_sides_check_body_entered(body: Node) -> void:
 	if body.has_method("ouch"):
 		body.ouch(position.x)
 
-func die(damage: int):
+func die(damage: float):
 	$Health_Bar.visible = true
 	health -= damage
 	if health <= 0:

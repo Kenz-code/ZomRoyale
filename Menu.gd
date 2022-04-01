@@ -69,8 +69,15 @@ func _on_Button2_pressed() -> void:
 
 
 func _on_LineEdit_text_entered(new_text: String) -> void:
+	$Name.text = new_text
 	Global.save["name"] = new_text
 	Global.save["first_time"] = false
 	$Control/name_enter.hide()
 	Global.save_game()
 
+
+
+func _on_DelSave_pressed() -> void:
+	var dir = Directory.new()
+	dir.remove(Global.save_path)
+	get_tree().reload_current_scene()

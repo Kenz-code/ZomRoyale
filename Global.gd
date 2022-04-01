@@ -2,6 +2,8 @@ extends Node
 
 var save_path = "user://save.dat"
 
+var wave = 1
+
 var guns = {
 	#[frame,shot_pause,distance till decay,muzzle,damage]
 	"seven seven": [0,0.23,240,22,20],
