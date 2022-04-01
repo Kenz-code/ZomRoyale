@@ -22,6 +22,7 @@ func _ready() -> void:
 		$floor_checker.enabled = true
 	$Health_Bar._on_max_health_updated(health)
 	$Health_Bar.visible = false
+	
 
 func _physics_process(delta: float) -> void:
 	randomize()
@@ -63,3 +64,8 @@ func die(damage: int):
 		$CollisionShape2D.queue_free()
 		yield(get_tree().create_timer(0.8),"timeout")
 		self.queue_free()
+	else:
+		$Particles2D2.emitting = true
+		$AnimatedSprite.material.set_shader_param("whitening",1)
+		yield(get_tree().create_timer(0.05),"timeout")
+		$AnimatedSprite.material.set_shader_param("whitening",0)

@@ -18,7 +18,7 @@ func _on_Bullet_body_entered(body):
 func _physics_process(delta):
 	position += transform.x * speed * delta
 	
-	if (position.x > start_position.x + 300):
+	if (position.x > start_position.x + Global.current_gun[2]):
 		queue_free()
-	elif (position.x < start_position.x - 300):
+	elif (position.x < start_position.x - Global.current_gun[2]):
 		queue_free()

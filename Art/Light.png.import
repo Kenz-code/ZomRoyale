@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/Light.png-d2a75277c3d245367c882dae628488a7.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Art/tiny_gun_icons/__MACOSX/._pack.png"
+source_file="res://Art/Light.png"
+dest_files=[ "res://.import/Light.png-d2a75277c3d245367c882dae628488a7.stex" ]
+
 [params]
 
 compress/mode=0

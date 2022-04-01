@@ -1,20 +1,26 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Art/PixelFantasy_Caves_1.0 (2)/mainlev_build.png" type="Texture" id=1]
-[ext_resource path="res://Art/potato.png" type="Texture" id=2]
-[ext_resource path="res://Player.gd" type="Script" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tiles.tres" type="TileSet" id=4]
 [ext_resource path="res://mobilecontrols.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Art/Portal.png" type="Texture" id=7]
+[ext_resource path="res://Art/blank tile.png" type="Texture" id=6]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sounds/06 Tonal Dissonance.ogg" type="AudioStream" id=8]
 [ext_resource path="res://World.gd" type="Script" id=9]
-[ext_resource path="res://Heart.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Bullet.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Art/Smoke.png" type="Texture" id=10]
 [ext_resource path="res://Art/pause.png" type="Texture" id=12]
 [ext_resource path="res://Art/Font/arcade.tres" type="DynamicFont" id=13]
 [ext_resource path="res://Sounds/33 Stray Cat (Alternate).ogg" type="AudioStream" id=14]
 [ext_resource path="res://Art/Themes/1.tres" type="Theme" id=15]
+
+[sub_resource type="Environment" id=28]
+background_mode = 4
+glow_enabled = true
+glow_strength = 0.85
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -30,6 +36,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="ConcavePolygonShape2D" id=13]
 segments = PoolVector2Array( 0, 0, 170, 0, 170, 0, 170, 16, 170, 16, 0, 16, 0, 16, 0, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=29]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -363,120 +372,85 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 18/z_index = 0
-
-[sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 7, 13 )
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 0,
-"values": [  ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.00592076, 1e-05 ),
-"update": 0,
-"values": [ Vector2( 0, 2 ), Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "run"
-length = 0.35
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 6, 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 440872, 185364, 901250 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 48 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 48 )
-
-[sub_resource type="SpriteFrames" id=19]
-animations = [ {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
+19/name = "blank tile.png 19"
+19/texture = ExtResource( 6 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 0, 0, 32, 32 )
+19/tile_mode = 0
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape = SubResource( 29 )
+19/shape_one_way = false
+19/shape_one_way_margin = 1.0
+19/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 29 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
+19/z_index = 0
+20/name = "blank tile.png 20"
+20/texture = ExtResource( 6 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 0, 0, 0, 0 )
+20/tile_mode = 0
+20/occluder_offset = Vector2( 0, 0 )
+20/navigation_offset = Vector2( 0, 0 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape_one_way = false
+20/shape_one_way_margin = 0.0
+20/shapes = [  ]
+20/z_index = 0
+21/name = "blank tile.png 21"
+21/texture = ExtResource( 6 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 0, 0, 32, 32 )
+21/tile_mode = 0
+21/occluder_offset = Vector2( 0, 0 )
+21/navigation_offset = Vector2( 0, 0 )
+21/shape_offset = Vector2( 0, 0 )
+21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+21/shape_one_way = false
+21/shape_one_way_margin = 0.0
+21/shapes = [  ]
+21/z_index = 0
+
+[sub_resource type="ParticlesMaterial" id=30]
+emission_shape = 2
+emission_box_extents = Vector3( 310, 166, 0 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 19.61
+angular_velocity = 70.59
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 10.0
 
 [sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 320.5, 59.5 )
+
+[sub_resource type="OccluderPolygon2D" id=23]
+polygon = PoolVector2Array( 6, 288, 96, 288, 96, 352, 0, 352, 0, 288 )
+
+[sub_resource type="OccluderPolygon2D" id=24]
+polygon = PoolVector2Array( 128, 288, 128, 352, 512, 352, 512, 288 )
+
+[sub_resource type="OccluderPolygon2D" id=25]
+polygon = PoolVector2Array( 544, 288, 544, 352, 640, 352, 640, 288 )
+
+[sub_resource type="OccluderPolygon2D" id=26]
+polygon = PoolVector2Array( 96, 228, 102, 224, 260, 224, 266, 228, 266, 231, 261, 233, 261, 238, 258, 240, 104, 240, 101, 238, 101, 233, 97, 232 )
+
+[sub_resource type="OccluderPolygon2D" id=27]
+polygon = PoolVector2Array( 0, 30, 8, 35, 16, 36, 22, 36, 30, 30, 40, 32, 45, 32, 48, 32, 57, 32, 63, 30, 65, 31, 74, 31, 85, 31, 85, 32, 91, 32, 93, 30, 96, 30, 96, 0, 0, 0 )
 
 [sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0 )
@@ -489,15 +463,29 @@ width = 640
 [node name="World" type="Node2D"]
 script = ExtResource( 9 )
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 28 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 3
+margin_right = 642.0
+margin_bottom = 351.0
+color = Color( 0.054902, 0.0784314, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 3
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 8
 collision_mask = 51
 format = 1
-tile_data = PoolIntArray( 65535, 14, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 14, 0, 131071, 14, 0, 65556, 14, 0, 196607, 14, 0, 131092, 14, 0, 262143, 14, 0, 196628, 14, 0, 327679, 14, 0, 262164, 14, 0, 393215, 14, 0, 327700, 14, 0, 458751, 14, 0, 393236, 14, 0, 524287, 14, 0, 458772, 14, 0, 589823, 14, 0, 524308, 14, 0, 655359, 13, 0, 589824, 0, 0, 589825, 2, 0, 589826, 3, 0, 589828, 0, 0, 589829, 2, 0, 589830, 3, 0, 589831, 4, 0, 589832, 0, 0, 589833, 2, 0, 589834, 3, 0, 589835, 4, 0, 589836, 0, 0, 589837, 2, 0, 589838, 3, 0, 589839, 4, 0, 589841, 2, 0, 589842, 3, 0, 589843, 4, 0, 589844, 13, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0 )
+tile_data = PoolIntArray( -131052, 19, 0, -1, 19, 0, -65536, 19, 0, -65535, 19, 0, -65534, 19, 0, -65533, 19, 0, -65532, 19, 0, -65531, 19, 0, -65530, 19, 0, -65529, 19, 0, -65528, 19, 0, -65527, 19, 0, -65526, 19, 0, -65525, 19, 0, -65524, 19, 0, -65523, 19, 0, -65522, 19, 0, -65521, 19, 0, -65520, 19, 0, -65519, 19, 0, -65518, 19, 0, -65517, 19, 0, -65516, 19, 0, 65535, 19, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 19, 0, 131071, 19, 0, 65556, 19, 0, 196607, 19, 0, 131092, 19, 0, 262143, 19, 0, 196628, 19, 0, 327679, 19, 0, 262164, 19, 0, 393215, 19, 0, 327700, 19, 0, 458751, 19, 0, 393236, 19, 0, 524287, 19, 0, 458772, 19, 0, 589823, 19, 0, 524308, 19, 0, 655359, 19, 0, 589824, 0, 0, 589825, 2, 0, 589826, 3, 0, 589828, 0, 0, 589829, 2, 0, 589830, 3, 0, 589831, 4, 0, 589832, 0, 0, 589833, 2, 0, 589834, 3, 0, 589835, 4, 0, 589836, 0, 0, 589837, 2, 0, 589838, 3, 0, 589839, 4, 0, 589841, 2, 0, 589842, 3, 0, 589843, 4, 0, 589844, 19, 0, 720895, 19, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0, 655380, 19, 0, 786431, 21, 0, 720896, 21, 0, 720897, 21, 0, 720898, 21, 0, 720899, 21, 0, 720900, 21, 0, 720901, 21, 0, 720902, 21, 0, 720903, 21, 0, 720904, 21, 0, 720905, 21, 0, 720906, 21, 0, 720907, 21, 0, 720908, 21, 0, 720909, 21, 0, 720910, 21, 0, 720911, 21, 0, 720912, 21, 0, 720913, 21, 0, 720914, 21, 0, 720915, 21, 0, 720916, 21, 0 )
 
 [node name="TileMap One way" type="TileMap" parent="."]
+light_mask = 3
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 5
@@ -505,79 +493,41 @@ collision_mask = 33
 format = 1
 tile_data = PoolIntArray( 65535, 14, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 14, 0, 131071, 14, 0, 65556, 14, 0, 196607, 14, 0, 131092, 14, 0, 262143, 14, 0, 196628, 14, 0, 327679, 14, 0, 262145, 2, 0, 262158, 0, 0, 262164, 14, 0, 393215, 14, 0, 327688, 4, 0, 327700, 14, 0, 458751, 14, 0, 393236, 14, 0, 524287, 14, 0, 458755, 0, 0, 458764, 2, 0, 458772, 14, 0, 589823, 14, 0, 524308, 14, 0, 655359, 13, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655363, 12, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655376, 12, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0 )
 
-[node name="Player" type="KinematicBody2D" parent="." groups=["player"]]
-position = Vector2( -40, -3 )
-z_index = 1
-collision_mask = 14
-script = ExtResource( 3 )
-Bullet = ExtResource( 11 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-position = Vector2( 56, 261 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-hframes = 4
-vframes = 4
-region_rect = Rect2( -35.4635, -21.8232, 35.4635, 21.8232 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 55, 264 )
-shape = SubResource( 14 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-root_node = NodePath("../..")
-anims/RESET = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/run = SubResource( 5 )
-
-[node name="return_to_normal_color" type="Timer" parent="Player"]
-wait_time = 0.32
-
-[node name="invincibility" type="Timer" parent="Player"]
-wait_time = 3.0
-
-[node name="shot_pause" type="Timer" parent="Player"]
-wait_time = 0.155
-
-[node name="muzzle" type="Position2D" parent="Player"]
-position = Vector2( 76, 262 )
-
-[node name="Gun" parent="Player" instance=ExtResource( 6 )]
-position = Vector2( 69, 264 )
-
-[node name="audio" type="AudioStreamPlayer2D" parent="Player"]
-volume_db = -10.0
-
 [node name="MobileControls" parent="." instance=ExtResource( 5 )]
+
+[node name="Torches" type="Node2D" parent="."]
+
+[node name="Torch" parent="Torches" instance=ExtResource( 3 )]
+position = Vector2( 320, 152 )
+
+[node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
+position = Vector2( 133, 216 )
+
+[node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
+position = Vector2( 499, 216 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Enemys" type="Node2D" parent="." groups=["zoms"]]
 
-[node name="Portal" type="AnimatedSprite" parent="Enemys"]
+[node name="Portal" parent="Enemys" instance=ExtResource( 7 )]
 position = Vector2( 105, 85 )
-scale = Vector2( 1.2, 1.2 )
-z_index = -1
-frames = SubResource( 19 )
 frame = 2
-playing = true
 
-[node name="Portal2" type="AnimatedSprite" parent="Enemys"]
+[node name="Portal2" parent="Enemys" instance=ExtResource( 7 )]
 position = Vector2( 320, 240 )
-scale = Vector2( 1.2, 1.2 )
-z_index = -1
-frames = SubResource( 19 )
-frame = 2
-playing = true
 
-[node name="Portal3" type="AnimatedSprite" parent="Enemys"]
+[node name="Portal3" parent="Enemys" instance=ExtResource( 7 )]
 position = Vector2( 535, 85 )
-scale = Vector2( 1.2, 1.2 )
-z_index = -1
-frames = SubResource( 19 )
-frame = 2
-playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+
+[node name="DustBackground" type="Particles2D" parent="."]
+position = Vector2( 320, 176 )
+lifetime = 10.0
+process_material = SubResource( 30 )
+texture = ExtResource( 10 )
 
 [node name="Void" type="Area2D" parent="."]
 position = Vector2( 83, 391 )
@@ -591,19 +541,92 @@ __meta__ = {
 position = Vector2( 237.5, 29.5 )
 shape = SubResource( 20 )
 
-[node name="Hearts" type="Node2D" parent="."]
+[node name="Shadows" type="Node2D" parent="."]
 
-[node name="Heart" parent="Hearts" instance=ExtResource( 10 )]
-position = Vector2( 32, 32 )
-z_index = 1
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+occluder = SubResource( 23 )
+light_mask = 3
 
-[node name="Heart2" parent="Hearts" instance=ExtResource( 10 )]
-position = Vector2( 72, 32 )
-z_index = 1
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+occluder = SubResource( 24 )
+light_mask = 3
 
-[node name="Heart3" parent="Hearts" instance=ExtResource( 10 )]
-position = Vector2( 112, 32 )
-z_index = 1
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+occluder = SubResource( 25 )
+light_mask = 3
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+occluder = SubResource( 26 )
+light_mask = 3
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 139, -64 )
+occluder = SubResource( 26 )
+light_mask = 3
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( -74, -96 )
+occluder = SubResource( 26 )
+light_mask = 3
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 352, -96 )
+occluder = SubResource( 26 )
+light_mask = 3
+
+[node name="LightOccluder2D15" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 277, 0 )
+occluder = SubResource( 26 )
+light_mask = 3
+
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D9" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 96, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D10" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 480, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D11" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 192, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D12" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 288, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D13" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 384, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
+
+[node name="LightOccluder2D14" type="LightOccluder2D" parent="Shadows"]
+light_mask = 3
+position = Vector2( 576, 0 )
+occluder = SubResource( 27 )
+light_mask = 3
 
 [node name="pause" type="TextureButton" parent="."]
 margin_left = 598.0
@@ -619,10 +642,14 @@ __meta__ = {
 
 [node name="Pick_gun" type="CanvasLayer" parent="."]
 pause_mode = 2
+scale = Vector2( 0, 1 )
+transform = Transform2D( 0, 0, 0, 1, 0, 0 )
 
 [node name="TextureRect" type="TextureRect" parent="Pick_gun"]
-margin_right = 640.0
-margin_bottom = 352.0
+margin_left = -7.0
+margin_top = -4.0
+margin_right = 644.0
+margin_bottom = 363.0
 texture = SubResource( 22 )
 expand = true
 __meta__ = {
@@ -636,9 +663,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -80.0
-margin_top = -62.5
-margin_right = 80.0
-margin_bottom = 62.5
+margin_top = -63.0
+margin_right = 70.0
+margin_bottom = 62.0
+focus_neighbour_left = NodePath("../back")
+focus_neighbour_top = NodePath("../back")
 theme = ExtResource( 15 )
 custom_fonts/font = ExtResource( 13 )
 text = "Main Menu"
@@ -650,6 +679,8 @@ __meta__ = {
 pause_mode = 2
 margin_right = 81.0
 margin_bottom = 45.0
+focus_neighbour_right = NodePath("../main_menu")
+focus_neighbour_bottom = NodePath("../main_menu")
 theme = ExtResource( 15 )
 custom_fonts/font = ExtResource( 13 )
 text = "back"
@@ -661,10 +692,7 @@ __meta__ = {
 stream = ExtResource( 14 )
 volume_db = -6.0
 
-[connection signal="timeout" from="Player/return_to_normal_color" to="Player" method="_on_return_to_normal_color_timeout"]
-[connection signal="timeout" from="Player/invincibility" to="Player" method="_on_invincibility_timeout"]
-[connection signal="timeout" from="Player/shot_pause" to="Player" method="_on_shot_pause_timeout"]
 [connection signal="body_entered" from="Void" to="." method="_on_Void_body_entered"]
-[connection signal="button_up" from="pause" to="." method="_on_pause_button_up"]
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
 [connection signal="button_up" from="Pick_gun/main_menu" to="." method="_on_main_menu_button_up"]
 [connection signal="button_up" from="Pick_gun/back" to="." method="_on_back_button_up"]
