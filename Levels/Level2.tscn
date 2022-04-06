@@ -1,26 +1,10 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Art/PixelFantasy_Caves_1.0 (2)/mainlev_build.png" type="Texture" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Torch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Torch.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Portal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/PixelFantasy_Caves_1.0 (2)/mainlev_build.png" type="Texture" id=3]
 [ext_resource path="res://tiles.tres" type="TileSet" id=4]
-[ext_resource path="res://mobilecontrols.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Art/blank tile.png" type="Texture" id=6]
-[ext_resource path="res://Portal.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Sounds/06 Tonal Dissonance.ogg" type="AudioStream" id=8]
-[ext_resource path="res://World.gd" type="Script" id=9]
-[ext_resource path="res://Art/Smoke.png" type="Texture" id=10]
-[ext_resource path="res://Art/pause.png" type="Texture" id=12]
-[ext_resource path="res://Art/Font/arcade.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Sounds/33 Stray Cat (Alternate).ogg" type="AudioStream" id=14]
-[ext_resource path="res://Art/Themes/1.tres" type="Theme" id=15]
-
-[sub_resource type="Environment" id=28]
-background_mode = 4
-glow_enabled = true
-glow_strength = 0.85
-glow_blend_mode = 1
-glow_hdr_threshold = 1.5
+[ext_resource path="res://Art/blank tile.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -49,9 +33,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=30]
 0/name = "mainlev_build.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 336, 368, 32, 32 )
@@ -72,7 +56,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 0/z_index = 0
 1/name = "mainlev_build.png 1"
-1/texture = ExtResource( 1 )
+1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 384, 367, 0, 0 )
@@ -86,7 +70,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 1/shapes = [  ]
 1/z_index = 0
 2/name = "mainlev_build.png 2"
-2/texture = ExtResource( 1 )
+2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 384, 368, 32, 32 )
@@ -107,7 +91,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 2/z_index = 0
 3/name = "mainlev_build.png 3"
-3/texture = ExtResource( 1 )
+3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 432, 368, 32, 32 )
@@ -128,7 +112,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 3/z_index = 0
 4/name = "mainlev_build.png 4"
-4/texture = ExtResource( 1 )
+4/texture = ExtResource( 3 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 224, 368, 32, 32 )
@@ -149,7 +133,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 4/z_index = 0
 5/name = "mainlev_build.png 5"
-5/texture = ExtResource( 1 )
+5/texture = ExtResource( 3 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 416, 496, 32, 32 )
@@ -163,7 +147,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 5/shapes = [  ]
 5/z_index = 0
 6/name = "mainlev_build.png 6"
-6/texture = ExtResource( 1 )
+6/texture = ExtResource( 3 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 528, 447, 0, 0 )
@@ -177,7 +161,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 6/shapes = [  ]
 6/z_index = 0
 7/name = "mainlev_build.png 7"
-7/texture = ExtResource( 1 )
+7/texture = ExtResource( 3 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 528, 448, 32, 32 )
@@ -191,7 +175,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 7/shapes = [  ]
 7/z_index = 0
 8/name = "mainlev_build.png 8"
-8/texture = ExtResource( 1 )
+8/texture = ExtResource( 3 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 416, 448, 32, 32 )
@@ -205,7 +189,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 8/shapes = [  ]
 8/z_index = 0
 9/name = "mainlev_build.png 9"
-9/texture = ExtResource( 1 )
+9/texture = ExtResource( 3 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 240, 496, 32, 32 )
@@ -219,7 +203,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 9/shapes = [  ]
 9/z_index = 0
 10/name = "mainlev_build.png 10"
-10/texture = ExtResource( 1 )
+10/texture = ExtResource( 3 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 272, 32, 32, 32 )
@@ -233,7 +217,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 10/shapes = [  ]
 10/z_index = 0
 11/name = "mainlev_build.png 11"
-11/texture = ExtResource( 1 )
+11/texture = ExtResource( 3 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 320, 16, 32, 32 )
@@ -247,7 +231,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 11/shapes = [  ]
 11/z_index = 0
 12/name = "mainlev_build.png 12"
-12/texture = ExtResource( 1 )
+12/texture = ExtResource( 3 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 32, 32, 32, 32 )
@@ -261,7 +245,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 12/shapes = [  ]
 12/z_index = 0
 13/name = "mainlev_build.png 13"
-13/texture = ExtResource( 1 )
+13/texture = ExtResource( 3 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 224, 96, 32, 36 )
@@ -282,7 +266,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 13/z_index = 0
 14/name = "mainlev_build.png 14"
-14/texture = ExtResource( 1 )
+14/texture = ExtResource( 3 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 304, 96, 32, 32 )
@@ -303,7 +287,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 14/z_index = 0
 15/name = "mainlev_build.png 15"
-15/texture = ExtResource( 1 )
+15/texture = ExtResource( 3 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 416, 96, 32, 32 )
@@ -324,7 +308,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 15/z_index = 0
 16/name = "mainlev_build.png 16"
-16/texture = ExtResource( 1 )
+16/texture = ExtResource( 3 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 352, 96, 16, 41 )
@@ -338,7 +322,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 16/shapes = [  ]
 16/z_index = 0
 17/name = "mainlev_build.png 17"
-17/texture = ExtResource( 1 )
+17/texture = ExtResource( 3 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 272, 96, 15, 32 )
@@ -352,7 +336,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 17/shapes = [  ]
 17/z_index = 0
 18/name = "mainlev_build.png 18"
-18/texture = ExtResource( 1 )
+18/texture = ExtResource( 3 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 755, 16, 170, 16 )
@@ -373,7 +357,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 18/z_index = 0
 19/name = "blank tile.png 19"
-19/texture = ExtResource( 6 )
+19/texture = ExtResource( 5 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 0, 0, 32, 32 )
@@ -394,7 +378,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 19/z_index = 0
 20/name = "blank tile.png 20"
-20/texture = ExtResource( 6 )
+20/texture = ExtResource( 5 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 0, 0, 0, 0 )
@@ -408,7 +392,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 20/shapes = [  ]
 20/z_index = 0
 21/name = "blank tile.png 21"
-21/texture = ExtResource( 6 )
+21/texture = ExtResource( 5 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 0, 0, 32, 32 )
@@ -422,67 +406,25 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 21/shapes = [  ]
 21/z_index = 0
 
-[sub_resource type="ParticlesMaterial" id=30]
-emission_shape = 2
-emission_box_extents = Vector3( 310, 166, 0 )
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 19.61
-angular_velocity = 70.59
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-radial_accel = 10.0
+[sub_resource type="OccluderPolygon2D" id=36]
+polygon = PoolVector2Array( 0, 288, 160, 288, 160, 256, 480, 256, 480, 288, 640, 288, 640, 352, 0, 352 )
 
-[sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 320.5, 59.5 )
+[sub_resource type="OccluderPolygon2D" id=37]
+polygon = PoolVector2Array( 22, 196, 25, 193, 28, 192, 186, 192, 189, 193, 192, 196, 192, 198, 190, 201, 187, 201, 187, 205, 187, 206, 185, 206, 184, 208, 30, 208, 29, 206, 27, 206, 27, 201, 24, 201, 23, 200, 22, 198 )
 
-[sub_resource type="OccluderPolygon2D" id=23]
-polygon = PoolVector2Array( 6, 288, 96, 288, 96, 352, 0, 352, 0, 288 )
-
-[sub_resource type="OccluderPolygon2D" id=24]
-polygon = PoolVector2Array( 128, 288, 128, 352, 512, 352, 512, 288 )
-
-[sub_resource type="OccluderPolygon2D" id=25]
-polygon = PoolVector2Array( 544, 288, 544, 352, 640, 352, 640, 288 )
-
-[sub_resource type="OccluderPolygon2D" id=26]
-polygon = PoolVector2Array( 96, 228, 102, 224, 260, 224, 266, 228, 266, 231, 261, 233, 261, 238, 258, 240, 104, 240, 101, 238, 101, 233, 97, 232 )
-
-[sub_resource type="OccluderPolygon2D" id=27]
+[sub_resource type="OccluderPolygon2D" id=35]
 polygon = PoolVector2Array( 0, 30, 8, 35, 16, 36, 22, 36, 30, 30, 40, 32, 45, 32, 48, 32, 57, 32, 63, 30, 65, 31, 74, 31, 85, 31, 85, 32, 91, 32, 93, 30, 96, 30, 96, 0, 0, 0 )
 
-[sub_resource type="Gradient" id=21]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.12549, 0.192157, 0.219608, 1 )
-
-[sub_resource type="GradientTexture" id=22]
-gradient = SubResource( 21 )
-width = 640
-
-[node name="World" type="Node2D"]
-script = ExtResource( 9 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 28 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-light_mask = 3
-margin_right = 642.0
-margin_bottom = 351.0
-color = Color( 0.054902, 0.0784314, 0.0862745, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Level2" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 3
-tile_set = SubResource( 1 )
+tile_set = SubResource( 30 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 8
 collision_mask = 51
 format = 1
-tile_data = PoolIntArray( -131052, 19, 0, -1, 19, 0, -65536, 19, 0, -65535, 19, 0, -65534, 19, 0, -65533, 19, 0, -65532, 19, 0, -65531, 19, 0, -65530, 19, 0, -65529, 19, 0, -65528, 19, 0, -65527, 19, 0, -65526, 19, 0, -65525, 19, 0, -65524, 19, 0, -65523, 19, 0, -65522, 19, 0, -65521, 19, 0, -65520, 19, 0, -65519, 19, 0, -65518, 19, 0, -65517, 19, 0, -65516, 19, 0, 65535, 19, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 19, 0, 131071, 19, 0, 65556, 19, 0, 196607, 19, 0, 131092, 19, 0, 262143, 19, 0, 196628, 19, 0, 327679, 19, 0, 262164, 19, 0, 393215, 19, 0, 327700, 19, 0, 458751, 19, 0, 393236, 19, 0, 524287, 19, 0, 458772, 19, 0, 589823, 19, 0, 524308, 19, 0, 655359, 19, 0, 589824, 0, 0, 589825, 2, 0, 589826, 3, 0, 589828, 0, 0, 589829, 2, 0, 589830, 3, 0, 589831, 4, 0, 589832, 0, 0, 589833, 2, 0, 589834, 3, 0, 589835, 4, 0, 589836, 0, 0, 589837, 2, 0, 589838, 3, 0, 589839, 4, 0, 589841, 2, 0, 589842, 3, 0, 589843, 4, 0, 589844, 19, 0, 720895, 19, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0, 655380, 19, 0, 786431, 21, 0, 720896, 21, 0, 720897, 21, 0, 720898, 21, 0, 720899, 21, 0, 720900, 21, 0, 720901, 21, 0, 720902, 21, 0, 720903, 21, 0, 720904, 21, 0, 720905, 21, 0, 720906, 21, 0, 720907, 21, 0, 720908, 21, 0, 720909, 21, 0, 720910, 21, 0, 720911, 21, 0, 720912, 21, 0, 720913, 21, 0, 720914, 21, 0, 720915, 21, 0, 720916, 21, 0 )
+tile_data = PoolIntArray( -131052, 19, 0, -1, 19, 0, -65536, 19, 0, -65535, 19, 0, -65534, 19, 0, -65533, 19, 0, -65532, 19, 0, -65531, 19, 0, -65530, 19, 0, -65529, 19, 0, -65528, 19, 0, -65527, 19, 0, -65526, 19, 0, -65525, 19, 0, -65524, 19, 0, -65523, 19, 0, -65522, 19, 0, -65521, 19, 0, -65520, 19, 0, -65519, 19, 0, -65518, 19, 0, -65517, 19, 0, -65516, 19, 0, 65535, 19, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 19, 0, 131071, 19, 0, 65556, 19, 0, 196607, 19, 0, 131092, 19, 0, 262143, 19, 0, 196628, 19, 0, 327679, 19, 0, 262164, 19, 0, 393215, 19, 0, 327700, 19, 0, 458751, 19, 0, 393236, 19, 0, 524287, 19, 0, 458772, 19, 0, 589823, 19, 0, 524293, 0, 0, 524294, 2, 0, 524295, 3, 0, 524296, 4, 0, 524297, 0, 0, 524298, 2, 0, 524299, 3, 0, 524300, 4, 0, 524301, 3, 0, 524302, 2, 0, 524308, 19, 0, 655359, 19, 0, 589824, 0, 0, 589825, 2, 0, 589826, 3, 0, 589827, 4, 0, 589828, 0, 0, 589829, 12, 0, 589830, 9, 0, 589831, 12, 0, 589832, 12, 0, 589833, 10, 0, 589834, 12, 0, 589835, 12, 0, 589836, 5, 0, 589837, 12, 0, 589838, 12, 0, 589839, 3, 0, 589840, 0, 0, 589841, 2, 0, 589842, 3, 0, 589843, 4, 0, 589844, 19, 0, 720895, 19, 0, 655360, 8, 0, 655361, 12, 0, 655362, 9, 0, 655363, 12, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 10, 0, 655368, 12, 0, 655369, 5, 0, 655370, 12, 0, 655371, 12, 0, 655372, 11, 0, 655373, 7, 0, 655374, 12, 0, 655375, 12, 0, 655376, 8, 0, 655377, 9, 0, 655378, 12, 0, 655379, 12, 0, 655380, 19, 0, 786431, 21, 0, 720896, 21, 0, 720897, 21, 0, 720898, 21, 0, 720899, 21, 0, 720900, 21, 0, 720901, 21, 0, 720902, 21, 0, 720903, 21, 0, 720904, 21, 0, 720905, 21, 0, 720906, 21, 0, 720907, 21, 0, 720908, 21, 0, 720909, 21, 0, 720910, 21, 0, 720911, 21, 0, 720912, 21, 0, 720913, 21, 0, 720914, 21, 0, 720915, 21, 0, 720916, 21, 0 )
 
 [node name="TileMap One way" type="TileMap" parent="."]
 light_mask = 3
@@ -491,208 +433,102 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 5
 collision_mask = 33
 format = 1
-tile_data = PoolIntArray( 65535, 14, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 14, 0, 131071, 14, 0, 65556, 14, 0, 196607, 14, 0, 131092, 14, 0, 262143, 14, 0, 196628, 14, 0, 327679, 14, 0, 262145, 2, 0, 262158, 0, 0, 262164, 14, 0, 393215, 14, 0, 327688, 4, 0, 327700, 14, 0, 458751, 14, 0, 393236, 14, 0, 524287, 14, 0, 458755, 0, 0, 458764, 2, 0, 458772, 14, 0, 589823, 14, 0, 524308, 14, 0, 655359, 13, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655363, 12, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655376, 12, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0 )
-
-[node name="MobileControls" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 65535, 14, 0, 0, 13, 0, 1, 14, 0, 2, 15, 0, 3, 13, 0, 4, 14, 0, 5, 15, 0, 6, 13, 0, 7, 14, 0, 8, 15, 0, 9, 13, 0, 10, 14, 0, 11, 15, 0, 12, 13, 0, 13, 14, 0, 14, 15, 0, 15, 13, 0, 16, 14, 0, 17, 15, 0, 18, 13, 0, 19, 14, 0, 20, 14, 0, 131071, 14, 0, 65556, 14, 0, 196607, 14, 0, 131092, 14, 0, 262143, 14, 0, 196628, 14, 0, 327679, 14, 0, 262148, 3, 0, 262155, 3, 0, 262164, 14, 0, 393215, 14, 0, 327700, 14, 0, 458751, 14, 0, 393217, 1, 0, 393230, 0, 0, 393236, 14, 0, 524287, 14, 0, 458772, 14, 0, 589823, 14, 0, 524308, 14, 0, 655359, 13, 0, 655360, 12, 0, 655361, 12, 0, 655362, 10, 0, 655363, 12, 0, 655364, 12, 0, 655365, 7, 0, 655366, 12, 0, 655367, 12, 0, 655368, 12, 0, 655369, 9, 0, 655370, 12, 0, 655371, 8, 0, 655372, 12, 0, 655373, 10, 0, 655374, 12, 0, 655375, 11, 0, 655376, 12, 0, 655377, 12, 0, 655378, 10, 0, 655379, 8, 0 )
 
 [node name="Torches" type="Node2D" parent="."]
 
-[node name="Torch" parent="Torches" instance=ExtResource( 3 )]
-position = Vector2( 320, 152 )
+[node name="Torch" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 70, 184 )
 
-[node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
-position = Vector2( 133, 216 )
+[node name="Torch2" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 570, 184 )
 
-[node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
-position = Vector2( 499, 216 )
+[node name="Torch3" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 80, 280 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Torch4" parent="Torches" instance=ExtResource( 1 )]
+position = Vector2( 560, 280 )
 
 [node name="Enemys" type="Node2D" parent="." groups=["zoms"]]
 
-[node name="Portal" parent="Enemys" instance=ExtResource( 7 )]
-position = Vector2( 105, 85 )
-frame = 2
+[node name="Portal" parent="Enemys" instance=ExtResource( 2 )]
+position = Vector2( 210, 85 )
 
-[node name="Portal2" parent="Enemys" instance=ExtResource( 7 )]
-position = Vector2( 320, 240 )
+[node name="Portal2" parent="Enemys" instance=ExtResource( 2 )]
+position = Vector2( 320, 210 )
+frame = 0
 
-[node name="Portal3" parent="Enemys" instance=ExtResource( 7 )]
-position = Vector2( 535, 85 )
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
-
-[node name="DustBackground" type="Particles2D" parent="."]
-position = Vector2( 320, 176 )
-lifetime = 10.0
-process_material = SubResource( 30 )
-texture = ExtResource( 10 )
-
-[node name="Void" type="Area2D" parent="."]
-position = Vector2( 83, 391 )
-collision_layer = 0
-collision_mask = 19
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
-position = Vector2( 237.5, 29.5 )
-shape = SubResource( 20 )
+[node name="Portal3" parent="Enemys" instance=ExtResource( 2 )]
+position = Vector2( 430, 85 )
+frame = 0
 
 [node name="Shadows" type="Node2D" parent="."]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadows"]
+[node name="Ground" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-occluder = SubResource( 23 )
-light_mask = 3
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadows"]
-light_mask = 3
-occluder = SubResource( 24 )
+occluder = SubResource( 36 )
 light_mask = 3
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadows"]
+[node name="Platform" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-occluder = SubResource( 25 )
-light_mask = 3
-
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="Shadows"]
-light_mask = 3
-occluder = SubResource( 26 )
+occluder = SubResource( 37 )
 light_mask = 3
 
-[node name="LightOccluder2D5" type="LightOccluder2D" parent="Shadows"]
+[node name="Platform2" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-position = Vector2( 139, -64 )
-occluder = SubResource( 26 )
-light_mask = 3
-
-[node name="LightOccluder2D6" type="LightOccluder2D" parent="Shadows"]
-light_mask = 3
-position = Vector2( -74, -96 )
-occluder = SubResource( 26 )
+position = Vector2( 101, -64 )
+occluder = SubResource( 37 )
 light_mask = 3
 
-[node name="LightOccluder2D7" type="LightOccluder2D" parent="Shadows"]
+[node name="Platform3" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-position = Vector2( 352, -96 )
-occluder = SubResource( 26 )
+position = Vector2( 325, -64 )
+occluder = SubResource( 37 )
 light_mask = 3
 
-[node name="LightOccluder2D15" type="LightOccluder2D" parent="Shadows"]
+[node name="Platform4" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-position = Vector2( 277, 0 )
-occluder = SubResource( 26 )
+position = Vector2( 426, 0 )
+occluder = SubResource( 37 )
 light_mask = 3
 
 [node name="LightOccluder2D8" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D9" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 96, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D10" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 480, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D11" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 192, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D12" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 288, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D13" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 384, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
 
 [node name="LightOccluder2D14" type="LightOccluder2D" parent="Shadows"]
 light_mask = 3
 position = Vector2( 576, 0 )
-occluder = SubResource( 27 )
+occluder = SubResource( 35 )
 light_mask = 3
-
-[node name="pause" type="TextureButton" parent="."]
-margin_left = 598.0
-margin_top = 13.0
-margin_right = 606.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 8, 8 )
-rect_scale = Vector2( 3, 3 )
-texture_normal = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pick_gun" type="CanvasLayer" parent="."]
-pause_mode = 2
-scale = Vector2( 0, 1 )
-transform = Transform2D( 0, 0, 0, 1, 0, 0 )
-
-[node name="TextureRect" type="TextureRect" parent="Pick_gun"]
-margin_left = -7.0
-margin_top = -4.0
-margin_right = 644.0
-margin_bottom = 363.0
-texture = SubResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="main_menu" type="Button" parent="Pick_gun"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = -63.0
-margin_right = 70.0
-margin_bottom = 62.0
-focus_neighbour_left = NodePath("../back")
-focus_neighbour_top = NodePath("../back")
-theme = ExtResource( 15 )
-custom_fonts/font = ExtResource( 13 )
-text = "Main Menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="back" type="Button" parent="Pick_gun"]
-pause_mode = 2
-margin_right = 81.0
-margin_bottom = 45.0
-focus_neighbour_right = NodePath("../main_menu")
-focus_neighbour_bottom = NodePath("../main_menu")
-theme = ExtResource( 15 )
-custom_fonts/font = ExtResource( 13 )
-text = "back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="pauseaudio" type="AudioStreamPlayer2D" parent="Pick_gun"]
-stream = ExtResource( 14 )
-volume_db = -6.0
-
-[connection signal="body_entered" from="Void" to="." method="_on_Void_body_entered"]
-[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
-[connection signal="button_up" from="Pick_gun/main_menu" to="." method="_on_main_menu_button_up"]
-[connection signal="button_up" from="Pick_gun/back" to="." method="_on_back_button_up"]

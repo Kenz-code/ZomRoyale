@@ -26,7 +26,7 @@ func _ready() -> void:
 	$Health_Bar.visible = false
 	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	randomize()
 	motion.y += GRAVITY
 	if motion.y >= MAXFALLSPEED:

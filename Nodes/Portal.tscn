@@ -58,7 +58,7 @@ color = Color( 0.313726, 0.447059, 0.180392, 1 )
 light_mask = 0
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 19 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Particles2D" type="Particles2D" parent="."]

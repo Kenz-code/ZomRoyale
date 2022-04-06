@@ -1,0 +1,168 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Art/Font/arcadesmall.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Art/Button.png" type="Texture" id=2]
+[ext_resource path="res://Art/tiny_gun_icons/seven-seven.png" type="Texture" id=3]
+[ext_resource path="res://Art/scroll_h.png" type="Texture" id=4]
+[ext_resource path="res://Art/Font/arcadeheader.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Nodes/GunStatCard.gd" type="Script" id=6]
+
+[node name="GunStatCard" type="TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -209.0
+margin_top = -162.0
+margin_right = 210.0
+margin_bottom = 161.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+flip_h = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Equip" type="TextureButton" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = -83.0
+margin_right = 116.0
+margin_bottom = -40.0
+focus_neighbour_right = NodePath("../Back")
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Equip"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -8.5
+margin_right = 20.0
+margin_bottom = 8.5
+custom_fonts/font = ExtResource( 1 )
+text = "Equip"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -115.0
+margin_top = -83.0
+margin_right = -39.0
+margin_bottom = -40.0
+focus_neighbour_left = NodePath("../Equip")
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Back"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -8.5
+margin_right = 20.0
+margin_bottom = 8.5
+custom_fonts/font = ExtResource( 1 )
+text = "Back"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -30.0
+margin_top = 40.0
+margin_right = 30.0
+margin_bottom = 78.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -154.5
+margin_top = -69.5
+margin_right = 154.5
+margin_bottom = 69.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FireRate" type="Label" parent="Stats"]
+margin_right = 309.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 5 )
+text = "Fire rate"
+align = 1
+valign = 1
+
+[node name="FireRateV" type="Label" parent="Stats"]
+margin_top = 25.0
+margin_right = 309.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "good"
+align = 1
+valign = 1
+
+[node name="Damage" type="Label" parent="Stats"]
+margin_top = 46.0
+margin_right = 309.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 5 )
+text = "Damage"
+align = 1
+valign = 1
+
+[node name="DamageV" type="Label" parent="Stats"]
+margin_top = 71.0
+margin_right = 309.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 1 )
+text = "20"
+align = 1
+valign = 1
+
+[node name="Distance" type="Label" parent="Stats"]
+margin_top = 92.0
+margin_right = 309.0
+margin_bottom = 113.0
+custom_fonts/font = ExtResource( 5 )
+text = "Distance"
+align = 1
+valign = 1
+
+[node name="DistanceV" type="Label" parent="Stats"]
+margin_top = 117.0
+margin_right = 309.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 1 )
+text = "240"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Equip" to="." method="_on_Equip_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

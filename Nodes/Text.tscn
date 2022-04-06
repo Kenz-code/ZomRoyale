@@ -3,6 +3,7 @@
 [ext_resource path="res://Art/Font/arcade.tres" type="DynamicFont" id=1]
 
 [node name="Text" type="Label"]
+light_mask = 0
 margin_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2

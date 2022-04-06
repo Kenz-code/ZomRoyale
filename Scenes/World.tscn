@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://mobilecontrols.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sounds/06 Tonal Dissonance.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/World.gd" type="Script" id=9]
+[ext_resource path="res://Art/Smoke.png" type="Texture" id=10]
+[ext_resource path="res://Art/scroll.png" type="Texture" id=11]
+[ext_resource path="res://Art/pause.png" type="Texture" id=12]
+[ext_resource path="res://Art/Font/arcade.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Sounds/33 Stray Cat (Alternate).ogg" type="AudioStream" id=14]
+[ext_resource path="res://Art/Themes/1.tres" type="Theme" id=15]
+
+[sub_resource type="Environment" id=28]
+background_mode = 4
+glow_enabled = true
+glow_strength = 0.85
+glow_blend_mode = 1
+glow_hdr_threshold = 1.5
+
+[sub_resource type="ParticlesMaterial" id=30]
+emission_shape = 2
+emission_box_extents = Vector3( 310, 166, 0 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+angular_velocity = 70.59
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 10.0
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 320.5, 59.5 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 28 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 3
+margin_right = 642.0
+margin_bottom = 351.0
+color = Color( 0.054902, 0.0784314, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MobileControls" parent="." instance=ExtResource( 5 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="DustBackground" type="Particles2D" parent="."]
+position = Vector2( 320, 176 )
+lifetime = 7.0
+process_material = SubResource( 30 )
+texture = ExtResource( 10 )
+
+[node name="Void" type="Area2D" parent="."]
+position = Vector2( 83, 391 )
+collision_layer = 0
+collision_mask = 19
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
+position = Vector2( 237.5, 29.5 )
+shape = SubResource( 20 )
+
+[node name="pause" type="TextureButton" parent="."]
+margin_left = 598.0
+margin_top = 13.0
+margin_right = 606.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 8, 8 )
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pick_gun" type="CanvasLayer" parent="."]
+pause_mode = 2
+scale = Vector2( 0, 1 )
+transform = Transform2D( 0, 0, 0, 1, 0, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="Pick_gun"]
+margin_left = -12.0
+margin_top = -9.0
+margin_right = 644.0
+margin_bottom = 363.0
+color = Color( 0, 0, 0, 0.72549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Pick_gun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.5
+margin_top = -214.5
+margin_right = 160.5
+margin_bottom = 214.5
+rect_rotation = -90.0
+rect_pivot_offset = Vector2( 160, 214 )
+texture = ExtResource( 11 )
+stretch_mode = 6
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main_menu" type="Button" parent="Pick_gun"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -78.0
+margin_top = -68.0
+margin_right = 72.0
+margin_bottom = 57.0
+focus_neighbour_left = NodePath("../back")
+focus_neighbour_top = NodePath("../back")
+theme = ExtResource( 15 )
+custom_fonts/font = ExtResource( 13 )
+text = "Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="Pick_gun"]
+pause_mode = 2
+margin_left = 137.0
+margin_top = 48.0
+margin_right = 218.0
+margin_bottom = 93.0
+focus_neighbour_right = NodePath("../main_menu")
+focus_neighbour_bottom = NodePath("../main_menu")
+theme = ExtResource( 15 )
+custom_fonts/font = ExtResource( 13 )
+text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pauseaudio" type="AudioStreamPlayer2D" parent="Pick_gun"]
+stream = ExtResource( 14 )
+volume_db = -6.0
+
+[connection signal="body_entered" from="Void" to="." method="_on_Void_body_entered"]
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+[connection signal="button_up" from="Pick_gun/main_menu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="Pick_gun/back" to="." method="_on_back_button_up"]
