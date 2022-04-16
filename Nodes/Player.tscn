@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Nodes/Player.gd" type="Script" id=1]
-[ext_resource path="res://Art/potato.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/CompositeSprites.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Nodes/Bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Gun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Art/Light.png" type="Texture" id=5]
@@ -16,24 +16,12 @@ extents = Vector2( 7, 13 )
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/path = NodePath("Player/Gun:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
 "times": PoolRealArray(  ),
 "transitions": PoolRealArray(  ),
 "update": 0,
@@ -44,24 +32,12 @@ tracks/1/keys = {
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/path = NodePath("Player/Gun:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.00592076, 1e-05 ),
 "update": 0,
@@ -73,24 +49,12 @@ resource_name = "run"
 length = 0.35
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Player/Sprite:frame")
+tracks/0/path = NodePath("Player/Gun:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 6, 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Player/Gun:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 440872, 185364, 901250 ),
 "update": 0,
@@ -168,14 +132,9 @@ collision_mask = 14
 script = ExtResource( 1 )
 Bullet = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-light_mask = 0
+[node name="CompositeSprites" parent="." instance=ExtResource( 2 )]
 position = Vector2( 56, 261 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-hframes = 4
-vframes = 4
-region_rect = Rect2( -35.4635, -21.8232, 35.4635, 21.8232 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 55, 264 )
@@ -192,6 +151,7 @@ wait_time = 0.32
 
 [node name="invincibility" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [node name="shot_pause" type="Timer" parent="."]
 wait_time = 0.155
@@ -230,24 +190,27 @@ texture = ExtResource( 6 )
 [node name="Cape" type="Particles2D" parent="."]
 position = Vector2( 55, 267 )
 emitting = false
-amount = 3
+amount = 5
 lifetime = 0.4
 local_coords = false
 process_material = SubResource( 11 )
 texture = ExtResource( 8 )
 
-[node name="Hearts" type="Node2D" parent="."]
-position = Vector2( 40, 3 )
+[node name="HeartsLayer" type="CanvasLayer" parent="."]
 
-[node name="Heart" parent="Hearts" instance=ExtResource( 7 )]
+[node name="Hearts" type="Node2D" parent="HeartsLayer"]
+z_index = 2
+z_as_relative = false
+
+[node name="Heart" parent="HeartsLayer/Hearts" instance=ExtResource( 7 )]
 position = Vector2( 32, 32 )
 z_index = 1
 
-[node name="Heart2" parent="Hearts" instance=ExtResource( 7 )]
+[node name="Heart2" parent="HeartsLayer/Hearts" instance=ExtResource( 7 )]
 position = Vector2( 72, 32 )
 z_index = 1
 
-[node name="Heart3" parent="Hearts" instance=ExtResource( 7 )]
+[node name="Heart3" parent="HeartsLayer/Hearts" instance=ExtResource( 7 )]
 position = Vector2( 112, 32 )
 z_index = 1
 
@@ -268,6 +231,12 @@ script = SubResource( 8 )
 stream = ExtResource( 9 )
 volume_db = 5.0
 
+[node name="SaturateTween" type="Tween" parent="."]
+
+[node name="InvinceTween" type="Tween" parent="."]
+
+[connection signal="reset_level" from="." to="." method="level_reset"]
 [connection signal="timeout" from="return_to_normal_color" to="." method="_on_return_to_normal_color_timeout"]
 [connection signal="timeout" from="invincibility" to="." method="_on_invincibility_timeout"]
 [connection signal="timeout" from="shot_pause" to="." method="_on_shot_pause_timeout"]
+[connection signal="tween_completed" from="InvinceTween" to="." method="_on_InvinceTween_tween_completed"]

@@ -456,14 +456,13 @@ position = Vector2( 499, 216 )
 
 [node name="Portal" parent="Enemys" instance=ExtResource( 2 )]
 position = Vector2( 105, 85 )
+frame = 0
 
 [node name="Portal2" parent="Enemys" instance=ExtResource( 2 )]
 position = Vector2( 320, 240 )
-frame = 0
 
 [node name="Portal3" parent="Enemys" instance=ExtResource( 2 )]
 position = Vector2( 535, 85 )
-frame = 0
 
 [node name="Shadows" type="Node2D" parent="."]
 

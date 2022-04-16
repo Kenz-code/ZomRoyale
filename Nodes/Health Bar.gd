@@ -28,4 +28,5 @@ func _assign_color(health):
 
 
 func _on_max_health_updated(max_health):
-	health_bar.max_value = max_health
+	get_node("Health_Bar").max_value = max_health
+	get_node("Health_Bar_red").max_value = max_health

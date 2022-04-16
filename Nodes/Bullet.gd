@@ -13,7 +13,7 @@ func _ready():
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("zoms"):
 		body.die(damage)
-	queue_free()
+	call_deferred("queue_free")
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

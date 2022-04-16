@@ -18,10 +18,8 @@ var motion = Vector2()
 
 
 func _ready() -> void:
-	health *= health_mult
 	$floor_checker.position.x = $CollisionShape2D.shape.get_radius() * direction + 1
-	if jump_cliffs or detects_cliffs:
-		$floor_checker.enabled = true
+	$floor_checker.enabled = true
 	$Health_Bar._on_max_health_updated(health)
 	$Health_Bar.visible = false
 	
@@ -32,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 	if motion.y >= MAXFALLSPEED:
 		motion.y = MAXFALLSPEED
 	
-	if is_on_wall() or not $floor_checker.is_colliding() and detects_cliffs and is_on_floor():
+	if is_on_wall():
 		direction = direction * -1
 		$floor_checker.position.x = $CollisionShape2D.shape.get_radius() * direction + 1
 	
@@ -42,6 +40,12 @@ func _physics_process(_delta: float) -> void:
 	motion.x = MAXSPEED * direction
 	$AnimatedSprite.scale.x = direction * 2
 	
+	#offset sprite
+	if direction == -1:
+		$AnimatedSprite.offset.x = 1
+	else:
+		$AnimatedSprite.offset.x = 0
+	
 	$Health_Bar._on_health_updated(health)
 	
 	move_and_slide(motion, UP)
@@ -49,25 +53,50 @@ func _physics_process(_delta: float) -> void:
 
 func _on_sides_check_body_entered(body: Node) -> void:
 	if body.has_method("ouch"):
-		body.ouch(position.x)
+		body.call_deferred("ouch",position.x)
 
 func die(damage: float):
 	$Health_Bar.visible = true
 	health -= damage
 	if health <= 0:
+		Global.add_xp += (Global.wave/10) + 1
+		Global.save["ability"]["reload_skill"] += 1
+		
 		$Health_Bar.visible = false
-		$Particles2D.emitting = true
 		$AnimatedSprite.visible = false
-		var die = load("res://Sounds/ZomDie.wav")
-		$audio.set_stream(die)
+		
+		$Particles2D.emitting = true
+		
+		$audio.set_stream(Global.die_s)
 		$audio.play()
+		
 		self.set_physics_process(false)
-		$sides_check.queue_free()
-		$CollisionShape2D.queue_free()
+		
+		$sides_check/collision.set_deferred("disabled",true)
+		$CollisionShape2D.set_deferred("disabled", true)
+		
+		remove_from_group("zoms")
 		yield(get_tree().create_timer(0.8),"timeout")
-		self.queue_free()
+		get_parent().remove_child(self)
+		
 	else:
 		$Particles2D2.emitting = true
 		$AnimatedSprite.material.set_shader_param("whitening",1)
 		yield(get_tree().create_timer(0.05),"timeout")
 		$AnimatedSprite.material.set_shader_param("whitening",0)
+
+
+func reset_state():
+	self.set_physics_process(true)
+	
+	$CollisionShape2D.set_deferred("disabled",false)
+	$sides_check/collision.set_deferred("disabled",false)
+	
+	$AnimatedSprite.visible = true
+	$Health_Bar.visible = false
+	
+	health = 100
+	health *= health_mult
+	$Health_Bar._on_max_health_updated(health)
+	
+	add_to_group("zoms")

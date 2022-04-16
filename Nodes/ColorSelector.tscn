@@ -1,0 +1,226 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Nodes/ColorSelector.gd" type="Script" id=1]
+[ext_resource path="res://Nodes/ColorSwatch.gd" type="Script" id=2]
+[ext_resource path="res://Nodes/ColorSwatch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/scroll_h.png" type="Texture" id=4]
+
+[node name="HairColorSelector" type="TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -160.0
+margin_right = 212.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 424, 320 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -76.0
+margin_right = 128.0
+margin_bottom = 76.0
+columns = 5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorSwatch23" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.827451, 0.67451, 0.419608, 1 )
+
+[node name="ColorSwatch25" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.811765, 0.647059, 0.368627, 1 )
+
+[node name="ColorSwatch27" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.796078, 0.619608, 0.317647, 1 )
+
+[node name="ColorSwatch29" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.780392, 0.592157, 0.270588, 1 )
+
+[node name="ColorSwatch31" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 208.0
+margin_right = 256.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.764706, 0.564706, 0.223529, 1 )
+
+[node name="ColorSwatch33" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_top = 52.0
+margin_right = 48.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.713726, 0.529412, 0.211765, 1 )
+
+[node name="ColorSwatch35" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_top = 52.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.662745, 0.490196, 0.196078, 1 )
+
+[node name="ColorSwatch37" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 104.0
+margin_top = 52.0
+margin_right = 152.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.615686, 0.454902, 0.180392, 1 )
+
+[node name="ColorSwatch39" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 156.0
+margin_top = 52.0
+margin_right = 204.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.564706, 0.419608, 0.164706, 1 )
+
+[node name="ColorSwatch41" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 208.0
+margin_top = 52.0
+margin_right = 256.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.517647, 0.380392, 0.152941, 1 )
+
+[node name="ColorSwatch43" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_top = 104.0
+margin_right = 48.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.466667, 0.345098, 0.137255, 1 )
+
+[node name="ColorSwatch45" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 52.0
+margin_top = 104.0
+margin_right = 100.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.419608, 0.309804, 0.121569, 1 )
+
+[node name="ColorSwatch47" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 104.0
+margin_top = 104.0
+margin_right = 152.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.368627, 0.270588, 0.105882, 1 )
+
+[node name="ColorSwatch49" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 156.0
+margin_top = 104.0
+margin_right = 204.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.317647, 0.235294, 0.0941176, 1 )
+
+[node name="ColorSwatch51" type="Button" parent="Grid" instance=ExtResource( 3 )]
+margin_left = 208.0
+margin_top = 104.0
+margin_right = 256.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 48, 48 )
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 0.270588, 0.2, 0.0784314, 1 )

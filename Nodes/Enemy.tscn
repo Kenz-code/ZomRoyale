@@ -84,11 +84,13 @@ material = SubResource( 12 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
 animation = "run"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 4 )
 shape = SubResource( 8 )
+disabled = true
 
 [node name="floor_checker" type="RayCast2D" parent="."]
 cast_to = Vector2( 0, 20 )
@@ -104,7 +106,7 @@ shape = SubResource( 9 )
 [node name="Particles2D" type="Particles2D" parent="."]
 light_mask = 0
 emitting = false
-amount = 20
+amount = 10
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.83
@@ -114,7 +116,7 @@ texture = ExtResource( 3 )
 [node name="Particles2D2" type="Particles2D" parent="."]
 light_mask = 0
 emitting = false
-amount = 10
+amount = 5
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.83

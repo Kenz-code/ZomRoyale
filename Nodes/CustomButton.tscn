@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Nodes/CustomButton.gd" type="Script" id=1]
+[ext_resource path="res://Art/Controls.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Text.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Art/Controls180.png" type="Texture" id=5]
+[ext_resource path="res://Art/Font/arcadeheader.tres" type="DynamicFont" id=6]
+
+[node name="CustomButton" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -109.0
+margin_top = -16.0
+margin_right = 110.0
+margin_bottom = 37.0
+size_flags_vertical = 3
+custom_constants/separation = 9
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" parent="." instance=ExtResource( 4 )]
+margin_right = 67.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 2 )
+label = ""
+
+[node name="Text" parent="." instance=ExtResource( 3 )]
+margin_left = 76.0
+margin_right = 143.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+text = "head"
+
+[node name="Right" parent="." instance=ExtResource( 4 )]
+margin_left = 152.0
+margin_right = 219.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 5 )
+label = ""
+
+[connection signal="pressed" from="Left" to="." method="_on_Left_pressed"]
+[connection signal="pressed" from="Right" to="." method="_on_Right_pressed"]

@@ -21,12 +21,25 @@ onready var current_gun = Global.current_gun
 onready var camera_shake = $Camera2D/screen_shaker
 onready var dust_process_mat = $Dust.get_process_material()
 onready var cape_process_mat = $Cape.get_process_material()
-onready var hearts_node = $Hearts
+onready var hearts_node = $HeartsLayer/Hearts
+onready var saturate_tween = $SaturateTween
+onready var invince_tween = $InvinceTween
 
+signal reset_level
+
+export (float) var speed_ability = 1
+export var reload_ability = 1
+
+var save_timer = Timer.new()
 
 func _ready() -> void:
+	#set set save_timer
+	save_timer.wait_time = 5
+	save_timer.connect("timeout",self,"_on_save_timer_timeout")
+	add_child(save_timer)
+	
+	#current gun
 	current_gun = Global.current_gun
-	$shot_pause.wait_time = current_gun[1]
 	$Gun.frame = current_gun[0]
 
 func _physics_process(_delta: float) -> void:
@@ -40,16 +53,16 @@ func _physics_process(_delta: float) -> void:
 		motion += Vector2.UP * (-9.81) * (JUMPMULTIPLER)
 	
 	#direction stuff
-	$Gun.position.x = $Sprite.position.x + (13 *direction)
-	$muzzle.position.x = $Sprite.position.x + (current_gun[3]*direction)
-	$Dust.position.x = $Sprite.position.x + (-4 *direction)
-	$Cape.position.x = $Sprite.position.x + (-8 * direction)
+	$Gun.position.x = $CompositeSprites.position.x + (13 *direction)
+	$muzzle.position.x = $CompositeSprites.position.x + (current_gun[3]*direction)
+	$Dust.position.x = $CompositeSprites.position.x + (-4 *direction)
+	$Cape.position.x = $CompositeSprites.position.x + (-8 * direction)
 	
 	if direction == 1:
-		$Sprite.scale.x = 2
+		$CompositeSprites.scale.x = 2
 		$Gun.flip_h = false
 	if direction == -1:
-		$Sprite.scale.x = -2
+		$CompositeSprites.scale.x = -2
 		$Gun.flip_h = true
 	
 	#clamp speed
@@ -57,18 +70,25 @@ func _physics_process(_delta: float) -> void:
 	
 	#handle movement
 	if Input.is_action_pressed("right"):
-		motion.x += ACCEL
+		motion.x += ACCEL * speed_ability
 		direction = 1
 		$AnimationPlayer.play("run")
+		$CompositeSprites.play_run()
 		walk_particle(-1)
+		yield(get_tree().create_timer(0.02),"timeout")
+		Global.save["ability"]["steps"] += 1
 	elif Input.is_action_pressed("left"):
-		motion.x -= ACCEL
+		motion.x -= ACCEL * speed_ability
 		direction = -1
 		$AnimationPlayer.play("run")
+		$CompositeSprites.play_run()
 		walk_particle(1)
+		yield(get_tree().create_timer(0.02),"timeout")
+		Global.save["ability"]["steps"] += 1
 	else:
 		motion.x = lerp(motion.x,0,0.2)
 		$AnimationPlayer.play("idle")
+		$CompositeSprites.play_idle()
 		$Dust.emitting = false
 		$Cape.emitting = false
 		$footsteps.playing = false
@@ -90,7 +110,14 @@ func _physics_process(_delta: float) -> void:
 	motion = move_and_slide(motion,UP)
 	
 	#set health position
-	$Hearts.global_position = Vector2(0,0)
+	hearts_node.global_position = Vector2(0,0)
+	
+	#save for abilities
+	if save_timer.time_left <= 0:
+		save_timer.start()
+
+func _on_save_timer_timeout():
+	Global.save_game()
 
 func ouch(var enemyposx = 0):
 	if not invincible:
@@ -107,11 +134,17 @@ func ouch(var enemyposx = 0):
 		$audio.play()
 		
 		#color
-		$Sprite.set_modulate(Color(1,0.3,0.3,0.3))
+		$CompositeSprites.set_modulate(Color(1,0.3,0.3,0.3))
 		$return_to_normal_color.start()
+		saturate_tween.interpolate_property(get_parent().get_node("WorldEnvironment").environment, "adjustment_saturation", 1, 0.5, 0.15, Tween.TRANS_BACK, Tween.EASE_OUT)
+		saturate_tween.start()
+		saturate_tween.interpolate_property(get_parent().get_node("WorldEnvironment").environment, "adjustment_saturation", 0.5, 1, 0.15, Tween.TRANS_BACK, Tween.EASE_IN)
+		saturate_tween.start()
 		
 		#invincibility
 		$invincibility.start()
+		invince_tween.interpolate_property(self, "modulate", Color(1,1,1,1),Color(1,1,1,0),1,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+		invince_tween.start()
 		set_collision_layer_bit(4, true)
 		set_collision_layer_bit(0, false)
 		set_collision_mask_bit(0,false)
@@ -137,11 +170,10 @@ func ouch(var enemyposx = 0):
 				get_parent().reset_wave_count()
 			get_parent().change_state(get_parent().game_state.set_up_wave)
 			reset_hearts()
-			
-
+		
 
 func _on_return_to_normal_color_timeout() -> void:
-	$Sprite.set_modulate(Color(1,1,1,1))
+	$CompositeSprites.set_modulate(Color(1,1,1,1))
 
 
 func _on_invincibility_timeout() -> void:
@@ -187,6 +219,24 @@ func walk_particle(_direction):
 		return
 
 func reset_hearts():
-	for n in $Hearts.get_children():
+	for n in hearts_node.get_children():
 		n.show()
 	lives = 0
+
+#stuff to do when wave is cleared or reset and set abilities
+func level_reset():
+	Global.load_abilities()
+	speed_ability = 1 + Global.save["ability"]["speed"] / 10
+	reload_ability = Global.save["ability"]["reload"]
+	$shot_pause.wait_time = current_gun[1]
+
+
+func _on_InvinceTween_tween_completed(object: Object, key: NodePath) -> void:
+	print($invincibility.time_left)
+	if $invincibility.time_left > 0:
+		if (self.modulate == Color(1,1,1,1)):
+			invince_tween.interpolate_property(self, "modulate", Color(1,1,1,1),Color(1,1,1,0),0.9,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+			invince_tween.start()
+		else:
+			invince_tween.interpolate_property(self, "modulate", Color(1,1,1,0),Color(1,1,1,1),0.9,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+			invince_tween.start()
