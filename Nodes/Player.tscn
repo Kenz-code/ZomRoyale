@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Nodes/Player.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/CompositeSprites.tscn" type="PackedScene" id=2]
@@ -104,6 +104,30 @@ scale = 0.7
 scale_curve = SubResource( 10 )
 color = Color( 0, 0.25098, 0.866667, 1 )
 
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.619565, 0.631818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 2
+emission_box_extents = Vector3( 3, 0, 0 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 101.47
+gravity = Vector3( 0, 90, 0 )
+initial_velocity = 9.8
+initial_velocity_random = 0.26
+angular_velocity = 42.35
+angular_velocity_random = 0.27
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 28.2
+angle_random = 0.7
+scale = 0.75
+scale_curve = SubResource( 14 )
+
 [sub_resource type="GDScript" id=8]
 script/source = "extends Node
 
@@ -196,6 +220,18 @@ local_coords = false
 process_material = SubResource( 11 )
 texture = ExtResource( 8 )
 
+[node name="JumpPoof" type="Particles2D" parent="."]
+light_mask = 0
+position = Vector2( 55, 277 )
+emitting = false
+amount = 11
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 15 )
+texture = ExtResource( 8 )
+
 [node name="HeartsLayer" type="CanvasLayer" parent="."]
 
 [node name="Hearts" type="Node2D" parent="HeartsLayer"]
@@ -228,12 +264,24 @@ smoothing_speed = 100.0
 script = SubResource( 8 )
 
 [node name="footsteps" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 1, 0 )
 stream = ExtResource( 9 )
 volume_db = 5.0
+
+[node name="ZomDetectorUnder" type="RayCast2D" parent="."]
+position = Vector2( 55, 277 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 2
+collide_with_areas = true
 
 [node name="SaturateTween" type="Tween" parent="."]
 
 [node name="InvinceTween" type="Tween" parent="."]
+
+[node name="SquishTween" type="Tween" parent="."]
+
+[node name="SquishTween2" type="Tween" parent="."]
 
 [connection signal="reset_level" from="." to="." method="level_reset"]
 [connection signal="timeout" from="return_to_normal_color" to="." method="_on_return_to_normal_color_timeout"]

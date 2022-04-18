@@ -183,9 +183,9 @@ margin_top = 3.0
 margin_right = 47.0
 margin_bottom = 3.0
 rect_scale = Vector2( 7, 7 )
-healthy_color = Color( 0.266667, 0.6, 0.992157, 1 )
-caution_color = Color( 0.266667, 0.6, 0.992157, 1 )
-danger_color = Color( 0.266667, 0.6, 0.992157, 1 )
+healthy_color = Color( 0.313726, 0.72549, 0.921569, 1 )
+caution_color = Color( 0.313726, 0.72549, 0.921569, 1 )
+danger_color = Color( 0.313726, 0.72549, 0.921569, 1 )
 caution_zone = 0.0
 danger_zone = 0.0
 

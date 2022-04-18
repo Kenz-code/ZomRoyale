@@ -13,6 +13,8 @@ var lives = 0
 var invincible = false
 var can_shoot = true
 var motion = Vector2()
+var hit_ground = false
+var squish_playing = false
 
 export (PackedScene) var Bullet
 export (int) var direction = 1
@@ -24,6 +26,9 @@ onready var cape_process_mat = $Cape.get_process_material()
 onready var hearts_node = $HeartsLayer/Hearts
 onready var saturate_tween = $SaturateTween
 onready var invince_tween = $InvinceTween
+onready var animation = $AnimationPlayer
+onready var squish_tween = $SquishTween
+onready var squish_tween2 = $SquishTween2
 
 signal reset_level
 
@@ -59,10 +64,12 @@ func _physics_process(_delta: float) -> void:
 	$Cape.position.x = $CompositeSprites.position.x + (-8 * direction)
 	
 	if direction == 1:
-		$CompositeSprites.scale.x = 2
+		if not squish_playing:
+			$CompositeSprites.scale.x = 2
 		$Gun.flip_h = false
-	if direction == -1:
-		$CompositeSprites.scale.x = -2
+	elif direction == -1:
+		if not squish_playing:
+			$CompositeSprites.scale.x = -2
 		$Gun.flip_h = true
 	
 	#clamp speed
@@ -72,7 +79,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("right"):
 		motion.x += ACCEL * speed_ability
 		direction = 1
-		$AnimationPlayer.play("run")
+		animation.play("run")
 		$CompositeSprites.play_run()
 		walk_particle(-1)
 		yield(get_tree().create_timer(0.02),"timeout")
@@ -80,14 +87,14 @@ func _physics_process(_delta: float) -> void:
 	elif Input.is_action_pressed("left"):
 		motion.x -= ACCEL * speed_ability
 		direction = -1
-		$AnimationPlayer.play("run")
+		animation.play("run")
 		$CompositeSprites.play_run()
 		walk_particle(1)
 		yield(get_tree().create_timer(0.02),"timeout")
 		Global.save["ability"]["steps"] += 1
 	else:
 		motion.x = lerp(motion.x,0,0.2)
-		$AnimationPlayer.play("idle")
+		animation.play("idle")
 		$CompositeSprites.play_idle()
 		$Dust.emitting = false
 		$Cape.emitting = false
@@ -98,8 +105,15 @@ func _physics_process(_delta: float) -> void:
 		shoot()
 	
 	#handle jump
-	if is_on_floor():
+	if not is_on_floor():
+		hit_ground = false
+	
+	elif is_on_floor():
+		if hit_ground  == false and not $ZomDetectorUnder.is_colliding():
+			play_squish_animation()
+			hit_ground = true
 		if Input.is_action_just_pressed("jump"):
+			$JumpPoof.emitting = true
 			$audio.set_stream(Global.jump_s)
 			$audio.volume_db = -20
 			$audio.play()
@@ -118,6 +132,21 @@ func _physics_process(_delta: float) -> void:
 
 func _on_save_timer_timeout():
 	Global.save_game()
+
+func play_squish_animation():
+	squish_playing = true
+	var cur_pos = Vector2(56,261)
+	squish_tween.interpolate_property($CompositeSprites, "scale", Vector2(2*direction,2),Vector2(3*direction,1.3),0.1,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	squish_tween2.interpolate_property($CompositeSprites,"position",cur_pos,Vector2(cur_pos.x, cur_pos.y +6),0.1,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	squish_tween.start()
+	squish_tween2.start()
+	yield(squish_tween,"tween_completed")
+	squish_tween.interpolate_property($CompositeSprites, "scale", Vector2(3*direction,1.3),Vector2(2*direction,2),0.1,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	squish_tween2.interpolate_property($CompositeSprites,"position",Vector2(cur_pos.x, cur_pos.y +6),cur_pos,0.1,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	squish_tween.start()
+	squish_tween2.start()
+	$CompositeSprites.position = Vector2(56,261)
+	squish_playing = false
 
 func ouch(var enemyposx = 0):
 	if not invincible:
@@ -231,12 +260,17 @@ func level_reset():
 	$shot_pause.wait_time = current_gun[1]
 
 
-func _on_InvinceTween_tween_completed(object: Object, key: NodePath) -> void:
-	print($invincibility.time_left)
+func _on_InvinceTween_tween_completed(_object: Object, _key: NodePath) -> void:
 	if $invincibility.time_left > 0:
 		if (self.modulate == Color(1,1,1,1)):
 			invince_tween.interpolate_property(self, "modulate", Color(1,1,1,1),Color(1,1,1,0),0.9,Tween.TRANS_CUBIC,Tween.EASE_OUT)
 			invince_tween.start()
-		else:
+		elif (self.modulate == Color(1,1,1,0)):
 			invince_tween.interpolate_property(self, "modulate", Color(1,1,1,0),Color(1,1,1,1),0.9,Tween.TRANS_CUBIC,Tween.EASE_OUT)
 			invince_tween.start()
+	elif $invincibility.time_left <= 0 and self.modulate == Color(1,1,1,0):
+		invince_tween.interpolate_property(self, "modulate", Color(1,1,1,0),Color(1,1,1,1),0.9,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+		invince_tween.start()
+		print("oof")
+
+

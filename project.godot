@@ -43,7 +43,7 @@ SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
 window/size/width=640
 window/size/height=352
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 
 [editor_plugins]
 
@@ -129,6 +129,7 @@ pause={
 2d_render/layer_1="torch"
 2d_render/layer_2="player"
 2d_render/layer_3="portal"
+2d_render/layer_4="bullet"
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="platform"
